@@ -1,7 +1,6 @@
 <?php
 namespace ItemCarouselBlock\Site\BlockLayout;
 
-use Laminas\Form\Element;
 use Laminas\Form\Form;
 use Laminas\View\Renderer\PhpRenderer;
 use Omeka\Api\Representation\SitePageBlockRepresentation;
@@ -25,7 +24,7 @@ class QuerierCarousel extends AbstractCarousel
 
     protected function getBasicForm(array $data): Form
     {
-        $basicForm = new Form();
+        $basicForm = parent::getBasicForm($data);
 
         $basicForm->add([
             'name' => 'o:block[__blockIndex__][o:data][query]',
@@ -33,27 +32,6 @@ class QuerierCarousel extends AbstractCarousel
             'options' => [
                 'label' => 'Specify resources in query', //@translate
                 'info' => 'Build or type a SQL query to select resources', //@translate
-            ],
-        ]);
-
-        $basicForm->add([
-            'name' => 'o:block[__blockIndex__][o:data][carouselHeading]',
-            'type' => Element\Text::class,
-            'options' => [
-                'label' => 'Carousel title', // @translate
-            ],
-        ]);
-
-        $basicForm->add([
-            'name' => 'o:block[__blockIndex__][o:data][perPage]',
-            'type' => Element\Number::class,
-            'options' => [
-                'label' => 'Items per slide', // @translate
-                'info' => 'The number of items shown per carousel slide', // @translate
-            ],
-            'attributes' => [
-                'min' => 1,
-                'max' => 10,
             ],
         ]);
 

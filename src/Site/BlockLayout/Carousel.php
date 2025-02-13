@@ -13,34 +13,6 @@ class Carousel extends AbstractCarousel
         return 'Item Carousel'; // @translate
     }
 
-    protected function getBasicForm(array $data): Form
-    {
-        $basicForm = new Form();
-
-        $basicForm->add([
-            'name' => 'o:block[__blockIndex__][o:data][carouselHeading]',
-            'type' => Element\Text::class,
-            'options' => [
-                'label' => 'Carousel title', // @translate
-            ],
-        ]);
-
-        $basicForm->add([
-            'name' => 'o:block[__blockIndex__][o:data][perPage]',
-            'type' => Element\Number::class,
-            'options' => [
-                'label' => 'Items per slide', // @translate
-                'info' => 'The number of items shown per carousel slide', // @translate
-            ],
-            'attributes' => [
-                'min' => 1,
-                'max' => 10,
-            ],
-        ]);
-
-        return $basicForm;
-    }
-
     public function getResourcesFromBlock(PhpRenderer $view, SitePageBlockRepresentation $block)
     {
         return $block->attachments();

@@ -13,8 +13,6 @@ abstract class AbstractCarousel extends AbstractBlockLayout
 {
     abstract public function getLabel(): string;
 
-    abstract protected function getBasicForm(array $data): Form;
-
     abstract public function getResourcesFromBlock(PhpRenderer $view, SitePageBlockRepresentation $block);
 
     protected function getTemplate(): string
@@ -40,7 +38,7 @@ abstract class AbstractCarousel extends AbstractBlockLayout
             'autoSlideDuration' => 0,
             'loop' => 'true',
             'fade' => 'false',
-            'query' => ''
+            'query' => '',
         ];
 
         $data = $block ? $block->data() + $defaults : $defaults;
@@ -51,7 +49,7 @@ abstract class AbstractCarousel extends AbstractBlockLayout
         $basicForm->setData([
             'o:block[__blockIndex__][o:data][carouselHeading]' => $data['carouselHeading'],
             'o:block[__blockIndex__][o:data][perPage]' => $data['perPage'],
-            'o:block[__blockIndex__][o:data][query]' => $data['query']
+            'o:block[__blockIndex__][o:data][query]' => $data['query'],
         ]);
         $advancedForm->setData([
             'o:block[__blockIndex__][o:data][showCaption]' => $data['showCaption'],
@@ -79,21 +77,20 @@ abstract class AbstractCarousel extends AbstractBlockLayout
         return $html;
     }
 
-
     public function render(PhpRenderer $view, SitePageBlockRepresentation $block)
     {
-        $attachments = $this->getResourcesFromBlock($view, $block);
+        $resources = $this->getResourcesFromBlock($view, $block);
 
-        if (!$attachments) {
+        if (!$resources) {
             return '';
         }
 
         $thumbnailType = $block->dataValue('thumbnail_type', 'large');
         $showTitleOption = $block->dataValue('show_title_option', 'item_title');
-        
+
         return $view->partial($this->getTemplate(), [
             'blockID' => $block->id(),
-            'attachments' => $attachments,
+            'resources' => $resources,
             'carouselHeading' => $block->dataValue('carouselHeading'),
             'perPage' => $block->dataValue('perPage'),
             'thumbnailType' => $thumbnailType,
@@ -106,6 +103,34 @@ abstract class AbstractCarousel extends AbstractBlockLayout
             'loop' => $block->dataValue('loop'),
             'fade' => $block->dataValue('fade'),
         ]);
+    }
+
+    protected function getBasicForm(array $data): Form
+    {
+        $basicForm = new Form();
+
+        $basicForm->add([
+            'name' => 'o:block[__blockIndex__][o:data][carouselHeading]',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Carousel title', // @translate
+            ],
+        ]);
+
+        $basicForm->add([
+            'name' => 'o:block[__blockIndex__][o:data][perPage]',
+            'type' => Element\Number::class,
+            'options' => [
+                'label' => 'Items per slide', // @translate
+                'info' => 'The number of items shown per carousel slide', // @translate
+            ],
+            'attributes' => [
+                'min' => 1,
+                'max' => 10,
+            ],
+        ]);
+
+        return $basicForm;
     }
 
     protected function getAdvancedForm(array $data): Form
