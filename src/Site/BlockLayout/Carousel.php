@@ -1,8 +1,6 @@
 <?php
 namespace ItemCarouselBlock\Site\BlockLayout;
 
-use Laminas\Form\Element;
-use Laminas\Form\Form;
 use Laminas\View\Renderer\PhpRenderer;
 use Omeka\Api\Representation\SitePageBlockRepresentation;
 
