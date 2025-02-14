@@ -16,14 +16,12 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 	<?php endif; ?>
 	<div class="<?php echo $carouselID; ?>">
 	<?php
-		foreach ($attachments as $attachment) {
-			$item = $attachment->item();
+		foreach ($resources as $item) {
 			// Skip if item doesn't exist
 			if (!$item) {
 				continue;
 			}
-			$media = $attachment->media() ?: $item->primaryMedia();
-			$caption = $this->showCaption == 'true' ? $attachment->caption() : '';
+			$media = $item->primaryMedia();
 			$title = '';
 						
 			if ($this->showTitleOption == 'item_title') {
@@ -32,15 +30,10 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 				$title = $media ? $media->displayTitle(null, $valueLang) : $item->displayTitle(null, $valueLang);
 			}
 			
-			if ($this->showTitleOption == 'no_title' && $this->showCaption == 'false') {
+			if ($this->showTitleOption == 'no_title') {
 				$textDiv = '';
-			} elseif ($this->showTitleOption == 'no_title' && $this->showCaption == 'true') {			
-				$textDiv = sprintf('<div class="slide-text"><div class="caption">%s</div></div>', $caption);
-			} elseif ($this->showTitleOption != 'no_title' && $this->showCaption == 'false') {			
+			} else {			
 				$textDiv = sprintf('<div class="slide-text"><div class="title">%s</div></div>', $title);
-			} else {
-				$textDiv = sprintf('<div class="slide-text"><div class="title">%s</div><div class="caption">%s</div></div>', 
-				$title, $caption);
 			}
 			
 			if ($media) {
@@ -55,11 +48,11 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 	</div>
 
 	<script>
-	document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
         const carouselOptions = {
             perPage: <?php echo $this->perPage ?>,
             loop: <?php echo $this->loop ?>,
-			fade: <?php echo $this->fade ?>,
+            fade: <?php echo $this->fade ?>,
 			floatCaption: <?php echo $this->floatCaption ?>,
             autoSlideDuration: <?php echo $this->autoSlideDuration ?>,
             slideCSSTextAlign: '<?php echo $this->slideCSSTextAlign ?>',
@@ -68,6 +61,6 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
         };
 
         initializeCarousel('<?php echo $carouselID ?>', carouselOptions);
-	});
-	</script>
+    });
+    </script>
 </div>

@@ -9,11 +9,11 @@ use Laminas\View\Renderer\PhpRenderer;
 use ItemCarouselBlock\Form\BasicForm;
 use ItemCarouselBlock\Form\AdvancedForm;
 
-class Carousel extends AbstractBlockLayout
+class QuerierCarousel extends AbstractBlockLayout
 {
     public function getLabel()
     {
-        return 'Item Carousel'; // @translate
+        return 'Item Carousel based on query'; // @translate
     }
 
     public function form(PhpRenderer $view, SiteRepresentation $site,
@@ -22,13 +22,12 @@ class Carousel extends AbstractBlockLayout
         $defaults = [
             'carouselHeading' => '',
             'perPage' => 1,
-            'showCaption' => 'false',
-            'floatCaption' => 'false',
             'slideCSSTextAlign' => 'center',
             'slideCSSStretch' => 'none',
             'autoSlideDuration' => 0,
             'loop' => 'true',
             'fade' => 'false',
+            'query' => '',
         ];
 
         $data = $block ? $block->data() + $defaults : $defaults;
@@ -42,18 +41,17 @@ class Carousel extends AbstractBlockLayout
             $fade = $data['fade'];
         }
 
-        $basicForm = new BasicForm();
-        $advancedForm = new AdvancedForm(null, ['queryMode' => false, 'disabledFade' => $disabledFade]);
+        $basicForm = new BasicForm(null, ['queryMode' => true]);
+        $advancedForm = new AdvancedForm(null, ['queryMode' => true, 'disabledFade' => $disabledFade]);
         $basicForm->init();
         $advancedForm->init();
 
         $basicForm->setData([
             'o:block[__blockIndex__][o:data][carouselHeading]' => $data['carouselHeading'],
             'o:block[__blockIndex__][o:data][perPage]' => $data['perPage'],
+            'o:block[__blockIndex__][o:data][query]' => $data['query'],
         ]);
         $advancedForm->setData([
-            'o:block[__blockIndex__][o:data][showCaption]' => $data['showCaption'],
-            'o:block[__blockIndex__][o:data][floatCaption]' => $data['floatCaption'],
             'o:block[__blockIndex__][o:data][slideCSSTextAlign]' => $data['slideCSSTextAlign'],
             'o:block[__blockIndex__][o:data][slideCSSStretch]' => $data['slideCSSStretch'],
             'o:block[__blockIndex__][o:data][autoSlideDuration]' => $data['autoSlideDuration'],
@@ -64,7 +62,6 @@ class Carousel extends AbstractBlockLayout
         $advancedForm->prepare();
 
         $html = '';
-        $html .= $view->blockAttachmentsForm($block);
         $html .= $view->formCollection($basicForm);
         $html .= '<a href="#" class="expand" aria-label="expand"><h4>' . $view->translate('Advanced Options') . '</h4></a>';
         $html .= '<div class="collapsible">';
@@ -77,22 +74,29 @@ class Carousel extends AbstractBlockLayout
 
     public function render(PhpRenderer $view, SitePageBlockRepresentation $block)
     {
-        $attachments = $block->attachments();
-        if (!$attachments) {
+        $query = $block->dataValue('query');
+        $api = $view->plugin('api');
+        $queryArray = [];
+        if (strlen($query) > 0) {
+            parse_str($query, $queryArray);
+            // $queryArray['page'] = 1;
+        }
+        $resources = $api->search('items', $queryArray)->getContent();
+
+        if (!$resources) {
             return '';
         }
 
         $thumbnailType = $block->dataValue('thumbnail_type', 'large');
         $showTitleOption = $block->dataValue('show_title_option', 'item_title');
 
-        return $view->partial('common/block-layout/item-carousel', [
+        return $view->partial('common/block-layout/item-querier-carousel', [
             'blockID' => $block->id(),
-            'attachments' => $attachments,
+            'resources' => $resources,
             'carouselHeading' => $block->dataValue('carouselHeading'),
             'perPage' => $block->dataValue('perPage'),
             'thumbnailType' => $thumbnailType,
             'showTitleOption' => $showTitleOption,
-            'showCaption' => $block->dataValue('showCaption'),
             'floatCaption' => $block->dataValue('floatCaption'),
             'slideCSSTextAlign' => $block->dataValue('slideCSSTextAlign'),
             'slideCSSStretch' => $block->dataValue('slideCSSStretch'),
