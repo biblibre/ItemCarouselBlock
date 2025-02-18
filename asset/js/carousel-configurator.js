@@ -1,32 +1,30 @@
 function initializeCarousel(carouselId, options) {
-    $(document).ready(function () {
-        const $carousel = $(`.${carouselId}`);
+    const $carousel = $(`.${carouselId}`);
 
-        const baseConfig = {
-            slidesToShow: options.perPage || 1,
-            slidesToScroll: 1,
-            infinite: options.loop || false,
-            draggable: true,
-            pauseOnHover: true,
-            centerMode: false,
-            arrows: true,
-            dots: true,
-            adaptiveHeight: true
-        };
+    const baseConfig = {
+        slidesToShow: options.perPage || 1,
+        slidesToScroll: 1,
+        infinite: options.loop || false,
+        draggable: true,
+        pauseOnHover: true,
+        centerMode: false,
+        arrows: true,
+        dots: true,
+        adaptiveHeight: true
+    };
 
-        if (options.fade) {
-            baseConfig.fade = options.fade;
-        }
+    if (options.fade) {
+        baseConfig.fade = options.fade;
+    }
 
-        if (options.autoSlideDuration > 0) {
-            baseConfig.autoplay = true;
-            baseConfig.autoplaySpeed = options.autoSlideDuration;
-        }
+    if (options.autoSlideDuration > 0) {
+        baseConfig.autoplay = true;
+        baseConfig.autoplaySpeed = options.autoSlideDuration;
+    }
 
-        $carousel.slick(baseConfig);
+    $carousel.slick(baseConfig);
 
-        applyCarouselStyles(carouselId, options);
-    });
+    applyCarouselStyles(carouselId, options);
 }
 
 function applyCarouselStyles(carouselId, options) {

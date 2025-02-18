@@ -16,35 +16,31 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 	<?php endif; ?>
 	<div class="<?php echo $carouselID; ?>">
 	<?php
-		foreach ($resources as $item) {
-			// Skip if item doesn't exist
-			if (!$item) {
-				continue;
-			}
-			$media = $item->primaryMedia();
-			$title = '';
-						
-			if ($this->showTitleOption == 'item_title') {
-				$title = $item->displayTitle(null, $valueLang);
-			} elseif ($this->showTitleOption == 'file_name') {			
-				$title = $media ? $media->displayTitle(null, $valueLang) : $item->displayTitle(null, $valueLang);
-			}
-			
-			if ($this->showTitleOption == 'no_title') {
-				$textDiv = '';
-			} else {			
-				$textDiv = sprintf('<div class="slide-text"><div class="title">%s</div></div>', $title);
-			}
-			
-			if ($media) {
-				$slide = $this->thumbnail($media, $this->thumbnailType) . $textDiv;
-				echo '<div>' . $item->linkRaw($slide) . '</div>';
-			} else {
-				$slide = $textDiv;
-				echo '<div>' . $item->linkRaw($slide) . '</div>';
-			} 
-		}
-	?>
+        foreach ($resources as $item) {
+            $media = $item->primaryMedia();
+            $title = '';
+
+            if ($this->showTitleOption == 'item_title') {
+                $title = $item->displayTitle(null, $valueLang);
+            } elseif ($this->showTitleOption == 'file_name') {
+                $title = $media ? $media->displayTitle(null, $valueLang) : $item->displayTitle(null, $valueLang);
+            }
+
+            if ($this->showTitleOption == 'no_title') {
+                $textDiv = '';
+            } else {
+                $textDiv = sprintf('<div class="slide-text"><div class="title">%s</div></div>', $title);
+            }
+
+            if ($media) {
+                $slide = $this->thumbnail($media, $this->thumbnailType) . $textDiv;
+                echo '<div>' . $item->linkRaw($slide) . '</div>';
+            } else {
+                $slide = $textDiv;
+                echo '<div>' . $item->linkRaw($slide) . '</div>';
+            }
+        }
+    ?>
 	</div>
 
 	<script>

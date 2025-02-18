@@ -9,8 +9,7 @@ class AdvancedForm extends Form
 {
     public function init()
     {
-        $options = $this->getOptions();
-        if (!$options['queryMode']) {
+        if (!$this->getOption('queryMode')) {
             $this->add([
             'name' => 'o:block[__blockIndex__][o:data][showCaption]',
             'type' => Element\Checkbox::class,
@@ -31,7 +30,7 @@ class AdvancedForm extends Form
                 'unchecked_value' => 'false',
             ],
         ];
-        if ($options['queryMode']) {
+        if ($this->getOption('queryMode')) {
             $floatCaptionInput['options']['label'] = 'Overlay title'; // @translate
             $floatCaptionInput['options']['info'] = 'Place title over image (may require adjusting theme CSS text settings)'; // @translate
         }
@@ -93,7 +92,7 @@ class AdvancedForm extends Form
                 'unchecked_value' => 'false',
             ],
             'attributes' => [
-                'disabled' => $options['disabledFade'],
+                'disabled' => $this->getOption('disabledFade'),
             ],
         ]);
     }
