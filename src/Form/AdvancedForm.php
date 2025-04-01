@@ -95,5 +95,31 @@ class AdvancedForm extends Form
                 'disabled' => $this->getOption('disabledFade'),
             ],
         ]);
+
+        if ($this->getOption('queryMode')) {
+            $this->add([
+            'name' => 'o:block[__blockIndex__][o:data][minResources]',
+            'type' => Element\Number::class,
+            'options' => [
+                'label' => 'Minimal number of resources to display caroussel', // @translate
+            ],
+            'attributes' => [
+                'required' => true,
+                'min' => 0,
+            ],
+        ]);
+
+            $this->add([
+            'name' => 'o:block[__blockIndex__][o:data][maxResources]',
+            'type' => Element\Number::class,
+            'options' => [
+                'label' => 'Maximum number of resources to display caroussel', // @translate
+            ],
+            'attributes' => [
+                'required' => true,
+                'min' => 0,
+            ],
+        ]);
+        }
     }
 }

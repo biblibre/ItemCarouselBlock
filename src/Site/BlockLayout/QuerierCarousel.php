@@ -28,6 +28,8 @@ class QuerierCarousel extends AbstractBlockLayout
             'loop' => 'true',
             'fade' => 'false',
             'query' => '',
+            'minResources' => 0,
+            'maxResources' => 5,
         ];
 
         $data = $block ? $block->data() + $defaults : $defaults;
@@ -57,6 +59,8 @@ class QuerierCarousel extends AbstractBlockLayout
             'o:block[__blockIndex__][o:data][autoSlideDuration]' => $data['autoSlideDuration'],
             'o:block[__blockIndex__][o:data][loop]' => $data['loop'],
             'o:block[__blockIndex__][o:data][fade]' => $fade,
+            'o:block[__blockIndex__][o:data][minResources]' => $data['minResources'],
+            'o:block[__blockIndex__][o:data][maxResources]' => $data['maxResources'],
         ]);
         $basicForm->prepare();
         $advancedForm->prepare();
@@ -79,18 +83,14 @@ class QuerierCarousel extends AbstractBlockLayout
         $queryArray = [];
         if (strlen($query) > 0) {
             parse_str($query, $queryArray);
-            // $queryArray['page'] = 1;
         }
+        $queryArray['limit'] = $block->dataValue('maxResources');
         $resources = $api->search('items', $queryArray)->getContent();
-
-        if (!$resources) {
-            return '';
-        }
 
         $thumbnailType = $block->dataValue('thumbnail_type', 'large');
         $showTitleOption = $block->dataValue('show_title_option', 'item_title');
-
-        return $view->partial('common/block-layout/item-querier-carousel', [
+        if (!empty($resources) && (count($resources) >= $block->dataValue('minResources'))) {
+            return $view->partial('common/block-layout/item-querier-carousel', [
             'blockID' => $block->id(),
             'resources' => $resources,
             'carouselHeading' => $block->dataValue('carouselHeading'),
@@ -104,5 +104,6 @@ class QuerierCarousel extends AbstractBlockLayout
             'loop' => $block->dataValue('loop'),
             'fade' => $block->dataValue('fade'),
         ]);
+        }
     }
 }
