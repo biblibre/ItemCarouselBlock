@@ -20,6 +20,7 @@ return [
     'block_layouts' => [
         'invokables' => [
             'carousel' => Site\BlockLayout\Carousel::class,
+            'querier_carousel' => Site\BlockLayout\QuerierCarousel::class,
         ],
     ],
 ];
