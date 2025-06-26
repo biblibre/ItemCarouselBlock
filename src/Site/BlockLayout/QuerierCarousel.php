@@ -52,7 +52,7 @@ class QuerierCarousel extends AbstractBlockLayout
             'type' => Query::class,
             'options' => [
                 'label' => 'Specify resources in query', //@translate
-                'info' => 'Build or type a SQL query to select resources', //@translate
+                'info' => 'Build or type a url query to select resources', //@translate
             ],
         ]);
 

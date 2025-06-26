@@ -2,26 +2,28 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # Pols12 <poltron54@gmail.com>, 2021
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-29 10:02-0700\n"
+"POT-Creation-Date: 2025-06-26 14:11+0200\n"
 "PO-Revision-Date: 2021-07-13 17:32+0000\n"
 "Last-Translator: Pols12 <poltron54@gmail.com>, 2021\n"
 "Language-Team: French (https://app.transifex.com/omeka/teams/14184/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
 
 #: src/Site/BlockLayout/Carousel.php:180
+#: src/Site/BlockLayout/QuerierCarousel.php:194
 msgid "Advanced Options"
 msgstr "Options avancées"
 
@@ -30,16 +32,19 @@ msgid "Item Carousel"
 msgstr "Manège à contenus"
 
 #: src/Site/BlockLayout/Carousel.php:44
+#: src/Site/BlockLayout/QuerierCarousel.php:46
 msgid "Carousel title"
 msgstr "Titre du manège"
 
 #: src/Site/BlockLayout/Carousel.php:52
+#: src/Site/BlockLayout/QuerierCarousel.php:63
 msgid "Items per slide"
-msgstr ""
+msgstr "Ressources par diapositive"
 
 #: src/Site/BlockLayout/Carousel.php:53
+#: src/Site/BlockLayout/QuerierCarousel.php:64
 msgid "The number of items shown per carousel slide"
-msgstr ""
+msgstr "Le nombre de ressources montrées par diapositive"
 
 #: src/Site/BlockLayout/Carousel.php:65
 msgid "Show attachment caption"
@@ -58,40 +63,52 @@ msgstr ""
 "les paramètres du texte dans le CSS du thème)."
 
 #: src/Site/BlockLayout/Carousel.php:86
+#: src/Site/BlockLayout/QuerierCarousel.php:76
 msgid "Text align"
 msgstr "Alignement du texte"
 
 #: src/Site/BlockLayout/Carousel.php:99
+#: src/Site/BlockLayout/QuerierCarousel.php:89
 msgid "Stretch image"
-msgstr ""
+msgstr "Etirer image"
 
 #: src/Site/BlockLayout/Carousel.php:102
+#: src/Site/BlockLayout/QuerierCarousel.php:92
 msgid "Fill width"
 msgstr "Remplir la largeur"
 
 #: src/Site/BlockLayout/Carousel.php:103
+#: src/Site/BlockLayout/QuerierCarousel.php:93
 msgid "Fill height"
 msgstr "Remplir la hauteur"
 
 #: src/Site/BlockLayout/Carousel.php:104
+#: src/Site/BlockLayout/QuerierCarousel.php:94
 msgid "Fill entire slide"
 msgstr "Remplir la diapositive entière"
 
 #: src/Site/BlockLayout/Carousel.php:113
+#: src/Site/BlockLayout/QuerierCarousel.php:103
 msgid "Breakpoint"
-msgstr ""
+msgstr "Point d'arrêt"
 
 #: src/Site/BlockLayout/Carousel.php:114
+#: src/Site/BlockLayout/QuerierCarousel.php:104
 msgid ""
 "Display one item per slide when carousel width drops below given pixel "
 "width. Adjust for mobile display, carousels with many items per page, etc."
 msgstr ""
+"Afficher une ressource par diapositive lorsque la largeur du carousel passe "
+"sous la largeur donnée Ajuster pour affichage responsive, les carousels avec "
+"plusieurs ressources par page, etc."
 
 #: src/Site/BlockLayout/Carousel.php:122
+#: src/Site/BlockLayout/QuerierCarousel.php:112
 msgid "Auto slide duration"
 msgstr "Durée de la diapositive automatique"
 
 #: src/Site/BlockLayout/Carousel.php:123
+#: src/Site/BlockLayout/QuerierCarousel.php:113
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
 msgstr ""
@@ -99,13 +116,36 @@ msgstr ""
 "automatiquement (définir à 0 pour désactiver)."
 
 #: src/Site/BlockLayout/Carousel.php:131
+#: src/Site/BlockLayout/QuerierCarousel.php:121
 msgid "Infinite loop"
 msgstr "Boucle infinie"
 
 #: src/Site/BlockLayout/Carousel.php:150
+#: src/Site/BlockLayout/QuerierCarousel.php:140
 msgid "Fade between slides"
 msgstr "Fondu entre les diapositives"
 
 #: src/Site/BlockLayout/Carousel.php:151
+#: src/Site/BlockLayout/QuerierCarousel.php:141
 msgid "Note: only works with 1 item per slide"
-msgstr ""
+msgstr "Note: fonctionne seulement si il y a une ressource par diapositive"
+
+#: src/Site/BlockLayout/QuerierCarousel.php:17
+msgid "Item Carousel based on query"
+msgstr "Manège à contenus basé sur une requête"
+
+#: src/Site/BlockLayout/QuerierCarousel.php:54
+msgid "Specify resources in query"
+msgstr "Spécifier les ressources dans la requête"
+
+#: src/Site/BlockLayout/QuerierCarousel.php:55
+msgid "Build or type a url query to select resources"
+msgstr "Construire ou saisir une requête url pour sélectionner des ressources"
+
+#: src/Site/BlockLayout/QuerierCarousel.php:154
+msgid "Minimal number of resources to display carousel"
+msgstr "Nombre minimal de ressources pour afficher le carousel"
+
+#: src/Site/BlockLayout/QuerierCarousel.php:166
+msgid "Maximum number of resources to display carousel"
+msgstr "Nombre maximal de ressources pour afficher le carousel"

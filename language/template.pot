@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-29 10:02-0700\n"
+"POT-Creation-Date: 2025-06-26 14:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/Site/BlockLayout/Carousel.php:180
+#: src/Site/BlockLayout/QuerierCarousel.php:194
 msgid "Advanced Options"
 msgstr ""
 
@@ -26,14 +27,17 @@ msgid "Item Carousel"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:44
+#: src/Site/BlockLayout/QuerierCarousel.php:46
 msgid "Carousel title"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:52
+#: src/Site/BlockLayout/QuerierCarousel.php:63
 msgid "Items per slide"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:53
+#: src/Site/BlockLayout/QuerierCarousel.php:64
 msgid "The number of items shown per carousel slide"
 msgstr ""
 
@@ -52,52 +56,84 @@ msgid ""
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:86
+#: src/Site/BlockLayout/QuerierCarousel.php:76
 msgid "Text align"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:99
+#: src/Site/BlockLayout/QuerierCarousel.php:89
 msgid "Stretch image"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:102
+#: src/Site/BlockLayout/QuerierCarousel.php:92
 msgid "Fill width"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:103
+#: src/Site/BlockLayout/QuerierCarousel.php:93
 msgid "Fill height"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:104
+#: src/Site/BlockLayout/QuerierCarousel.php:94
 msgid "Fill entire slide"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:113
+#: src/Site/BlockLayout/QuerierCarousel.php:103
 msgid "Breakpoint"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:114
+#: src/Site/BlockLayout/QuerierCarousel.php:104
 msgid ""
 "Display one item per slide when carousel width drops below given pixel "
 "width. Adjust for mobile display, carousels with many items per page, etc."
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:122
+#: src/Site/BlockLayout/QuerierCarousel.php:112
 msgid "Auto slide duration"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:123
+#: src/Site/BlockLayout/QuerierCarousel.php:113
 msgid ""
 "Time in milliseconds to pause before auto advance (set to 0 to turn off)"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:131
+#: src/Site/BlockLayout/QuerierCarousel.php:121
 msgid "Infinite loop"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:150
+#: src/Site/BlockLayout/QuerierCarousel.php:140
 msgid "Fade between slides"
 msgstr ""
 
 #: src/Site/BlockLayout/Carousel.php:151
+#: src/Site/BlockLayout/QuerierCarousel.php:141
 msgid "Note: only works with 1 item per slide"
+msgstr ""
+
+#: src/Site/BlockLayout/QuerierCarousel.php:17
+msgid "Item Carousel based on query"
+msgstr ""
+
+#: src/Site/BlockLayout/QuerierCarousel.php:54
+msgid "Specify resources in query"
+msgstr ""
+
+#: src/Site/BlockLayout/QuerierCarousel.php:55
+msgid "Build or type a url query to select resources"
+msgstr ""
+
+#: src/Site/BlockLayout/QuerierCarousel.php:154
+msgid "Minimal number of resources to display carousel"
+msgstr ""
+
+#: src/Site/BlockLayout/QuerierCarousel.php:166
+msgid "Maximum number of resources to display carousel"
 msgstr ""
